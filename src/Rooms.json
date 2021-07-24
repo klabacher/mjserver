@@ -1,0 +1,13 @@
+{
+ "Rooms": [
+     {
+         "name": "Center",
+         "population": 10,
+         "default": true
+     },
+     {
+         "name": "Store",
+         "population": 10
+     }
+ ]
+}
