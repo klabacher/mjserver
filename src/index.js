@@ -3,7 +3,6 @@ const Player = require('./player');
 
 class Engine {
     constructor() {
-
     }
   init() {
     this.initHttpServer()
@@ -42,7 +41,7 @@ class Engine {
     this.server = require('http').Server(this.app);
     this.io = require('socket.io')(this.server, {
       cors: {
-          origin: "http://localhost:3000",
+          origin: "*",
           methods: ["GET", "POST"]
         }
     });
