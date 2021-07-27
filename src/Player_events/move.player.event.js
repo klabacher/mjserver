@@ -1,7 +1,7 @@
 const event = {
     'name': 'move',
-    'callback': (player, data) => {
-        console.log(player, data);
+    'callback': (data, player) => {
+        console.log(data, player);
     }
 };
 

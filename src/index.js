@@ -1,23 +1,25 @@
 var express = require('express');
 const Player = require('./player');
+const World = require('./room');
 
-class Engine {
+class Engine extends World {
     constructor() {
-    }
+      super()
+    };
   init() {
-    this.initHttpServer()
-    this.setupLog()
+    this.initHttpServer();
+    this.setupLog();
     if (process.env.NODE_ENV === "development") {
-      this.startWeb()
-    }
-    this.SetupSocketIO()
-    this.setupPlayer()
-    this.OpenPort()
-  }
+      this.startWeb();
+    };
+    this.SetupSocketIO();
+    this.setupPlayer();
+    this.OpenPort();
+  };
 
   initHttpServer() {
     this.app = express()
-  }
+  };
 
   setupLog() {
     if (process.env.NODE_ENV === "production") {
@@ -26,7 +28,7 @@ class Engine {
     if (process.env.NODE_ENV === "development") {
         //this.app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
     };
-  }
+  };
 
   startWeb() {
     this.app.set('views', './pages')
@@ -51,13 +53,13 @@ class Engine {
     this.io.on('connection', function (socket) {
       console.log('Connected', socket.id);
       socket.emit("data", socket.id);
-      new Player(socket).init()
-    });
+      new Player(socket, this).init();
+    }.bind(this));
   }
 
   OpenPort() {
     this.server.listen(3000);
-  }
+  };
 }
 
 module.exports = Engine;

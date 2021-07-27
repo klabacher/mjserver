@@ -1,13 +1,15 @@
 {
  "Rooms": [
      {
-         "name": "Center",
-         "population": 10,
-         "default": true
+        "id": 101,
+        "name": "Center",
+        "populationMax": 10,
+        "default": true
      },
      {
-         "name": "Store",
-         "population": 10
+        "id": 102,
+        "name": "Store",
+        "populationMax": 10
      }
  ]
 }

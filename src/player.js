@@ -10,12 +10,14 @@ class PlayerData {
 };
 
 module.exports = class Player {
-    constructor(Socket) {
+    constructor(Socket, Engine) {
         this.position = {
             x: 0,
             y: 0
         };
+        this.actualRoom = String;
         this.id = Socket.id; this.socket = Socket;
+        this.engine = Engine;
     };
     async RegListeners() {
         await getEvents(async function (events, playerclass) {
@@ -29,5 +31,11 @@ module.exports = class Player {
     async init() {
         console.log("initing player", this.id)
         await this.RegListeners()
+        //Go to default room
+        this.engine.AddPlayerToRoom(this.engine.spawnroom, this)
     };
+
+    emit() {
+        this.socket.emit('data', "aa")
+    }
 }
