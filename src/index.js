@@ -47,6 +47,13 @@ class Engine extends World {
           methods: ["GET", "POST"]
         }
     });
+    this.io.of("/").adapter.on("create-room", (room) => {
+      console.log(`room ${room} was created`);
+    });
+    
+    this.io.of("/").adapter.on("join-room", (room, id) => {
+      console.log(`socket ${id} has joined room ${room}`);
+    });
   }
 
   setupPlayer() {
@@ -58,7 +65,7 @@ class Engine extends World {
   }
 
   OpenPort() {
-    this.server.listen(3000);
+    this.server.listen(3100);
   };
 }
 

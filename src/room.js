@@ -21,17 +21,19 @@ module.exports = class World {
     };
 
     AddPlayerToRoom(room, player) {
+        player.socket.join(room);
         this.getRoom(room).players.push(player);
         console.log(this.getRoom(room).players.length)
         player.actualRoom = room
-    }
+    };
 
     remPlayer(player) {
+        player.socket.leave(player.actualRoom);
         const i = this.getRoom(player.actualRoom).players.findIndex((element) => {
             return element === player
         })
         this.getRoom(player.actualRoom).players.splice(i,i);
-    }
+    };
 
     MovePlayerToOtherRoom(room, player) {
         //remove
@@ -39,5 +41,5 @@ module.exports = class World {
         //add
         this.AddPlayerToRoom(room, player)
         player.actualRoom = room
-    }
-}
+    };
+};
